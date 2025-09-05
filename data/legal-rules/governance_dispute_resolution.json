@@ -1,0 +1,106 @@
+{
+  "rule_set": "Governance & Dispute Resolution",
+  "version": "1.0.0",
+  "description": "Rules for analyzing governance structures and dispute resolution mechanisms",
+  "rules": [
+    {
+      "id": "GD-001",
+      "name": "Unfavorable Jurisdiction",
+      "category": "Jurisdiction",
+      "severity": "medium",
+      "patterns": [
+        "governing law",
+        "jurisdiction",
+        "exclusive jurisdiction",
+        "courts of",
+        "venue",
+        "forum selection"
+      ],
+      "description": "Identifies potentially unfavorable jurisdiction clauses"
+    },
+    {
+      "id": "GD-002",
+      "name": "Arbitration Clauses",
+      "category": "Dispute Resolution",
+      "severity": "medium",
+      "patterns": [
+        "binding arbitration",
+        "arbitration rules",
+        "AAA",
+        "JAMS",
+        "arbitral tribunal",
+        "arbitration proceedings"
+      ],
+      "description": "Analyzes arbitration requirements and procedures"
+    },
+    {
+      "id": "GD-003",
+      "name": "Mediation Requirements",
+      "category": "Dispute Resolution",
+      "severity": "low",
+      "patterns": [
+        "mediation",
+        "mediator",
+        "good faith negotiation",
+        "alternative dispute resolution",
+        "ADR"
+      ],
+      "description": "Identifies mediation and ADR requirements"
+    },
+    {
+      "id": "GD-004",
+      "name": "Escalation Procedures",
+      "category": "Dispute Resolution",
+      "severity": "low",
+      "patterns": [
+        "escalation process",
+        "dispute escalation",
+        "senior management",
+        "executive resolution",
+        "tiered dispute"
+      ],
+      "description": "Analyzes dispute escalation procedures and timelines"
+    },
+    {
+      "id": "GD-005",
+      "name": "Notice Requirements",
+      "category": "Governance",
+      "severity": "medium",
+      "patterns": [
+        "written notice",
+        "notice period",
+        "notice requirements",
+        "formal notice",
+        "notification procedure"
+      ],
+      "description": "Identifies notice requirements and procedures"
+    },
+    {
+      "id": "GD-006",
+      "name": "Waiver of Jury Trial",
+      "category": "Dispute Resolution",
+      "severity": "medium",
+      "patterns": [
+        "waive jury trial",
+        "jury trial waiver",
+        "bench trial",
+        "judge only"
+      ],
+      "description": "Flags jury trial waiver provisions"
+    },
+    {
+      "id": "GD-007",
+      "name": "Attorney Fees Provision",
+      "category": "Dispute Resolution",
+      "severity": "medium",
+      "patterns": [
+        "attorney fees",
+        "legal fees",
+        "prevailing party",
+        "costs and expenses",
+        "fee shifting"
+      ],
+      "description": "Analyzes attorney fee and cost allocation provisions"
+    }
+  ]
+}

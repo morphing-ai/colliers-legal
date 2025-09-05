@@ -1,0 +1,131 @@
+name: colliers-legal
+
+services:
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: colliers-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: colliers_legal
+      POSTGRES_USER: ${DB_USER:-colliers_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-colliers_pass}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-colliers_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - traefik-public
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    container_name: colliers-backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend/app:/app/app:rw  # Mount app directory for hot-reload
+      - ./backend/requirements.txt:/app/requirements.txt:ro
+      - ./backend/clerk_pub.pem:/app/clerk_pub.pem:ro
+      - ./data:/app/data:ro
+    environment:
+      - DEBUG=${DEBUG:-false}
+      - DEV_MODE=${DEV_MODE:-false}
+      - DATABASE_URL=postgresql+asyncpg://${DB_USER:-colliers_user}:${DB_PASSWORD:-colliers_pass}@postgres/colliers_legal
+      - LEGAL_RULES_PATH=/app/data/legal-rules
+      - LLM_PROVIDER=${LLM_PROVIDER:-azure_openai}
+      - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
+      - AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}
+      - AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}
+      - AZURE_OPENAI_MODEL=${AZURE_OPENAI_MODEL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4-turbo-preview}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - ANTHROPIC_MODEL=${ANTHROPIC_MODEL:-claude-3-opus-20240229}
+      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY}
+      - CLERK_ISSUER=${CLERK_ISSUER:-""}
+      - CLERK_PEM_PUBLIC_KEY_PATH=/app/clerk_pub.pem
+      - CLERK_WHITELIST_EMAIL=${CLERK_WHITELIST_EMAIL:-""}
+      - CORS_ORIGINS_STR=https://${FRONTEND_DOMAIN},http://localhost:3000
+      - API_PREFIX=/api
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+    networks:
+      - traefik-public
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.colliers-backend.rule=Host(`${FRONTEND_DOMAIN}`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.colliers-backend.entrypoints=websecure"
+      - "traefik.http.routers.colliers-backend.tls=true"
+      - "traefik.http.routers.colliers-backend.tls.certresolver=cloudflare"
+      - "traefik.http.services.colliers-backend.loadbalancer.server.port=8000"
+      # Don't strip prefix - backend expects /api
+      - "traefik.http.routers.colliers-backend.middlewares=colliers-cors-headers@docker"
+      # Add CORS middleware configuration
+      - "traefik.http.middlewares.colliers-cors-headers.headers.accesscontrolallowheaders=Authorization,Content-Type,X-Requested-With,Origin,Accept"
+      - "traefik.http.middlewares.colliers-cors-headers.headers.accesscontrolallowmethods=GET,POST,PUT,DELETE,OPTIONS,PATCH"
+      - "traefik.http.middlewares.colliers-cors-headers.headers.accesscontrolalloworiginlist=https://${FRONTEND_DOMAIN},http://localhost:3000"
+      - "traefik.http.middlewares.colliers-cors-headers.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.colliers-cors-headers.headers.accesscontrolmaxage=100"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    container_name: colliers-frontend
+    restart: unless-stopped
+    volumes:
+      - ./frontend/src:/app/src:rw  # Mount src for hot-reload
+      - ./frontend/public:/app/public:rw  # Mount public for hot-reload
+      - ./frontend/index.html:/app/index.html:rw  # Mount index.html
+      - ./frontend/vite.config.ts:/app/vite.config.ts:rw  # Mount config
+      - ./frontend/tsconfig.ts:/app/tsconfig.ts:ro
+      - ./frontend/tsconfig.node.ts:/app/tsconfig.node.ts:ro
+      - ./frontend/tailwind.config.js:/app/tailwind.config.js:ro
+      - ./frontend/postcss.config.js:/app/postcss.config.js:ro
+    environment:
+      - NODE_ENV=development
+      - VITE_CLERK_PUBLISHABLE_KEY=${CLERK_PUBLISHABLE_KEY}
+      - VITE_API_URL=https://${FRONTEND_DOMAIN}/api
+    ports:
+      - "3002:3000"  # Expose on port 3002 to avoid conflicts
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      - backend
+    networks:
+      - traefik-public
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.colliers-frontend.rule=Host(`${FRONTEND_DOMAIN}`)"
+      - "traefik.http.routers.colliers-frontend.entrypoints=websecure"
+      - "traefik.http.routers.colliers-frontend.tls=true"
+      - "traefik.http.routers.colliers-frontend.tls.certresolver=cloudflare"
+      - "traefik.http.services.colliers-frontend.loadbalancer.server.port=3000"
+
+networks:
+  traefik-public:
+    external: true
+
+volumes:
+  postgres-data:
+  letsencrypt:

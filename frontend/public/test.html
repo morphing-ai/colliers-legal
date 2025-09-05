@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #3B82F6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Static Test Page</h1>
+        <p>If you can see this page, basic HTML serving is working correctly.</p>
+        <p>This means that there might be an issue with the React application or its dependencies.</p>
+        <p>The current time is: <span id="current-time"></span></p>
+        <script>
+            // Simple JavaScript to update the time
+            function updateTime() {
+                document.getElementById('current-time').textContent = new Date().toLocaleTimeString();
+            }
+            
+            // Update time immediately and then every second
+            updateTime();
+            setInterval(updateTime, 1000);
+            
+            // Log some diagnostic information
+            console.log('Static test page loaded successfully');
+            console.log('Browser information:', navigator.userAgent);
+        </script>
+    </div>
+</body>
+</html>

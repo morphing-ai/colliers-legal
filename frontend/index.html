@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colliers - Paralegal</title>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Loading placeholder while React loads -->
+      <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: #f9fafb;">
+        <div style="text-align: center;">
+          <div style="width: 48px; height: 48px; border: 4px solid #e5e7eb; border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px;"></div>
+          <p style="color: #6b7280; font-family: system-ui, -apple-system, sans-serif;">Loading Colliers - Paralegal...</p>
+        </div>
+      </div>
+      <style>
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      </style>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- Debugging info -->
+    <div id="vite-debug" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #f0f0f0; padding: 10px; border-top: 1px solid #ccc; font-family: monospace; font-size: 12px;">
+      Loading status: <span id="loading-status">Initializing...</span>
+    </div>
+    <script>
+      // Simple debugging script
+      const debugElement = document.getElementById('vite-debug');
+      const loadingStatus = document.getElementById('loading-status');
+      
+      // Show debug panel initially during development
+      debugElement.style.display = 'block';
+      
+      // Show debug panel with keyboard shortcut (Ctrl+Alt+D)
+      document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.altKey && e.key === 'd') {
+          debugElement.style.display = debugElement.style.display === 'none' ? 'block' : 'none';
+        }
+      });
+      
+      // Log loading stages
+      window.addEventListener('DOMContentLoaded', () => {
+        loadingStatus.textContent = 'DOM loaded. Waiting for React...';
+        console.log('DOM loaded. Waiting for React...');
+      });
+      
+      window.addEventListener('load', () => {
+        loadingStatus.textContent = 'Window loaded. Scripts executed.';
+        console.log('Window loaded. Scripts executed.');
+        setTimeout(() => {
+          const rootContent = document.getElementById('root').innerHTML;
+          if (rootContent.trim() === '') {
+            loadingStatus.textContent = 'WARNING: Root element is empty after load!';
+            console.error('WARNING: Root element is empty after load!');
+          } else {
+            loadingStatus.textContent = 'Application successfully loaded!';
+            console.log('Application successfully loaded!');
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

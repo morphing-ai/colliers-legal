@@ -1,0 +1,92 @@
+{
+  "rule_set": "Operational Risks",
+  "version": "1.0.0",
+  "description": "Rules for identifying operational risks in contract performance",
+  "rules": [
+    {
+      "id": "OR-001",
+      "name": "Scope Creep Potential",
+      "category": "Performance Obligations",
+      "severity": "medium",
+      "patterns": [
+        "additional work",
+        "scope expansion",
+        "including but not limited to",
+        "as may be required",
+        "other duties as assigned",
+        "work as directed"
+      ],
+      "description": "Identifies language that could lead to scope creep"
+    },
+    {
+      "id": "OR-002",
+      "name": "Unclear Service Expectations",
+      "category": "Performance Obligations",
+      "severity": "medium",
+      "patterns": [
+        "reasonable efforts",
+        "best efforts",
+        "commercially reasonable",
+        "satisfactory completion",
+        "acceptable quality"
+      ],
+      "description": "Flags vague or subjective performance standards"
+    },
+    {
+      "id": "OR-003",
+      "name": "Third-Party Dependencies",
+      "category": "Dependencies",
+      "severity": "high",
+      "patterns": [
+        "subject to third party",
+        "dependent upon",
+        "contingent on",
+        "upstream contract",
+        "prime contractor approval"
+      ],
+      "description": "Identifies dependencies on third parties or upstream contracts"
+    },
+    {
+      "id": "OR-004",
+      "name": "Change Management Process",
+      "category": "Change Management",
+      "severity": "medium",
+      "patterns": [
+        "change order",
+        "variation",
+        "amendment procedure",
+        "modification process",
+        "change request"
+      ],
+      "description": "Analyzes change management and variation processes"
+    },
+    {
+      "id": "OR-005",
+      "name": "Approval Process Delays",
+      "category": "Change Management",
+      "severity": "medium",
+      "patterns": [
+        "prior written approval",
+        "approval required",
+        "consent needed",
+        "authorization process",
+        "approval timeline"
+      ],
+      "description": "Identifies potential bottlenecks in approval processes"
+    },
+    {
+      "id": "OR-006",
+      "name": "Work Stoppage Risks",
+      "category": "Performance Obligations",
+      "severity": "high",
+      "patterns": [
+        "stop work order",
+        "suspension of work",
+        "work stoppage",
+        "delay damages",
+        "force majeure"
+      ],
+      "description": "Flags provisions that could lead to work stoppages"
+    }
+  ]
+}

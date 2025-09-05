@@ -1,0 +1,41 @@
+# Dockerfile.dev - Optimized for development with hot-reload
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    curl \
+    wget \
+    git \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install development dependencies
+RUN pip install --no-cache-dir \
+    watchfiles \
+    ipython \
+    ipdb \
+    black \
+    flake8 \
+    pytest \
+    pytest-asyncio \
+    httpx
+
+# Create necessary directories
+RUN mkdir -p /app/data /app/app
+
+# Set Python to not buffer output for better logging
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Expose port
+EXPOSE 8000
+
+# Default command (can be overridden in docker-compose)
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--reload-dir", "/app/app", "--log-level", "info"]

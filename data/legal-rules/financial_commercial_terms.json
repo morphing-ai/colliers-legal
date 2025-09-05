@@ -1,0 +1,105 @@
+{
+  "rule_set": "Financial & Commercial Terms",
+  "version": "1.0.0",
+  "description": "Rules for analyzing financial and commercial terms in contracts",
+  "rules": [
+    {
+      "id": "FC-001",
+      "name": "Payment Milestones",
+      "category": "Payment Triggers",
+      "severity": "medium",
+      "patterns": [
+        "payment milestone",
+        "progress payment",
+        "completion payment",
+        "final payment",
+        "retainage",
+        "holdback"
+      ],
+      "description": "Analyzes payment triggers and milestone clarity"
+    },
+    {
+      "id": "FC-002",
+      "name": "Liquidated Damages",
+      "category": "Penalties",
+      "severity": "high",
+      "patterns": [
+        "liquidated damages",
+        "penalty clause",
+        "daily penalty",
+        "delay damages",
+        "performance penalty"
+      ],
+      "description": "Identifies liquidated damages and penalty provisions"
+    },
+    {
+      "id": "FC-003",
+      "name": "Uncapped Liability Exposure",
+      "category": "Profitability Risk",
+      "severity": "high",
+      "patterns": [
+        "unlimited liability",
+        "no cap on liability",
+        "uncapped damages",
+        "without limitation"
+      ],
+      "description": "Flags contracts with unlimited liability exposure"
+    },
+    {
+      "id": "FC-004",
+      "name": "Extended Warranty Periods",
+      "category": "Profitability Risk",
+      "severity": "medium",
+      "patterns": [
+        "warranty period",
+        "guarantee period",
+        "defects liability",
+        "warranty extension",
+        "perpetual warranty"
+      ],
+      "description": "Identifies aggressive or extended warranty obligations"
+    },
+    {
+      "id": "FC-005",
+      "name": "Payment Terms Clarity",
+      "category": "Payment Triggers",
+      "severity": "medium",
+      "patterns": [
+        "payment terms",
+        "invoice",
+        "billing cycle",
+        "payment schedule",
+        "payment conditions"
+      ],
+      "description": "Evaluates clarity and consistency of payment terms"
+    },
+    {
+      "id": "FC-006",
+      "name": "Cost Escalation Clauses",
+      "category": "Financial Terms",
+      "severity": "medium",
+      "patterns": [
+        "price adjustment",
+        "cost escalation",
+        "inflation adjustment",
+        "price increase",
+        "cost variation"
+      ],
+      "description": "Identifies cost escalation and price adjustment mechanisms"
+    },
+    {
+      "id": "FC-007",
+      "name": "Retention and Bonds",
+      "category": "Financial Terms",
+      "severity": "medium",
+      "patterns": [
+        "performance bond",
+        "payment bond",
+        "retention money",
+        "security deposit",
+        "guarantee"
+      ],
+      "description": "Analyzes bond and retention requirements"
+    }
+  ]
+}

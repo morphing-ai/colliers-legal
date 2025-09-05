@@ -1,0 +1,88 @@
+{
+  "name": "Colliers Legal Contract Analysis Rules",
+  "version": "1.0.0",
+  "description": "Comprehensive ruleset for analyzing construction and real estate contracts",
+  "created": "2025-01-05",
+  "risk_levels": {
+    "high": {
+      "color": "red",
+      "description": "Potential compliance/legal exposure requiring immediate attention"
+    },
+    "medium": {
+      "color": "amber",
+      "description": "Needs legal review, moderate concern"
+    },
+    "low": {
+      "color": "green",
+      "description": "Standard provision, low concern"
+    }
+  },
+  "categories": [
+    {
+      "id": "risk_compliance",
+      "name": "Risk & Compliance Screening",
+      "description": "Federal and state regulatory compliance checks",
+      "ruleset_file": "risk_compliance_screening.json"
+    },
+    {
+      "id": "clause_variance",
+      "name": "Clause Variance & Benchmarking",
+      "description": "Identification of non-standard clauses and deviations",
+      "ruleset_file": "clause_variance_benchmarking.json"
+    },
+    {
+      "id": "operational_risks",
+      "name": "Operational Risks",
+      "description": "Performance obligations and operational risk analysis",
+      "ruleset_file": "operational_risks.json"
+    },
+    {
+      "id": "financial_commercial",
+      "name": "Financial & Commercial Terms",
+      "description": "Payment terms and commercial risk analysis",
+      "ruleset_file": "financial_commercial_terms.json"
+    },
+    {
+      "id": "governance_dispute",
+      "name": "Governance & Dispute Resolution",
+      "description": "Jurisdiction and dispute resolution analysis",
+      "ruleset_file": "governance_dispute_resolution.json"
+    }
+  ],
+  "state_specific_rules": {
+    "CA": {
+      "name": "California",
+      "rules": ["Prompt Payment Act", "Mechanics Lien Law", "CCPA Privacy"]
+    },
+    "NY": {
+      "name": "New York",
+      "rules": ["Prompt Payment Act", "Scaffold Law", "Construction Trust Fund Act"]
+    },
+    "TX": {
+      "name": "Texas",
+      "rules": ["Prompt Payment Act", "Anti-Indemnity Statute", "Mechanics Lien Law"]
+    },
+    "FL": {
+      "name": "Florida",
+      "rules": ["Prompt Payment Act", "Construction Lien Law", "Building Code Requirements"]
+    }
+  },
+  "analysis_outputs": {
+    "risk_heatmap": {
+      "description": "Visual heatmap showing risk levels across contract sections",
+      "enabled": true
+    },
+    "compliance_dashboard": {
+      "description": "Dashboard showing compliance status across categories",
+      "enabled": true
+    },
+    "executive_summary": {
+      "description": "High-level summary of key risks and recommendations",
+      "enabled": true
+    },
+    "detailed_report": {
+      "description": "Comprehensive analysis with specific clause references",
+      "enabled": true
+    }
+  }
+}

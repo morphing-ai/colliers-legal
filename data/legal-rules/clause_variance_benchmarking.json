@@ -1,0 +1,86 @@
+{
+  "rule_set": "Clause Variance & Benchmarking",
+  "version": "1.0.0",
+  "description": "Rules for identifying non-standard clauses and deviations from accepted norms",
+  "rules": [
+    {
+      "id": "CV-001",
+      "name": "Non-Standard Indemnity",
+      "category": "Clause Variance",
+      "severity": "high",
+      "patterns": [
+        "unconditional indemnity",
+        "sole negligence",
+        "gross negligence indemnification",
+        "unlimited indemnification"
+      ],
+      "description": "Identifies unusually broad or one-sided indemnification clauses"
+    },
+    {
+      "id": "CV-002",
+      "name": "Unusual Liability Exclusions",
+      "category": "Clause Variance",
+      "severity": "high",
+      "patterns": [
+        "exclude all liability",
+        "no liability whatsoever",
+        "complete exclusion",
+        "absolute limitation"
+      ],
+      "description": "Flags extreme liability exclusions beyond industry standards"
+    },
+    {
+      "id": "CV-003",
+      "name": "Missing Dispute Resolution",
+      "category": "Common Gaps",
+      "severity": "medium",
+      "patterns": [
+        "dispute resolution",
+        "arbitration",
+        "mediation",
+        "litigation",
+        "dispute procedure"
+      ],
+      "description": "Identifies contracts lacking clear dispute resolution procedures"
+    },
+    {
+      "id": "CV-004",
+      "name": "Absent Liability Caps",
+      "category": "Common Gaps",
+      "severity": "medium",
+      "patterns": [
+        "liability cap",
+        "maximum liability",
+        "limitation of liability",
+        "liability ceiling"
+      ],
+      "description": "Flags contracts without liability limitation provisions"
+    },
+    {
+      "id": "CV-005",
+      "name": "Risk Shifting to General Contractor",
+      "category": "Emerging Patterns",
+      "severity": "high",
+      "patterns": [
+        "contractor assumes all risk",
+        "contractor solely responsible",
+        "all risk transferred",
+        "contractor bears entire"
+      ],
+      "description": "Identifies patterns of excessive risk transfer to general contractor"
+    },
+    {
+      "id": "CV-006",
+      "name": "Subcontractor Strict Obligations",
+      "category": "Clause Variance",
+      "severity": "medium",
+      "patterns": [
+        "strict compliance",
+        "absolute obligation",
+        "no exceptions",
+        "unconditional requirement"
+      ],
+      "description": "Flags unusually strict obligations imposed by subcontractors"
+    }
+  ]
+}

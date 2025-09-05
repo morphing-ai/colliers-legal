@@ -1,0 +1,158 @@
+{
+  "rule_set": "Risk & Compliance Screening",
+  "version": "1.0.0",
+  "description": "Rules for identifying regulatory red flags and compliance concerns in contracts",
+  "rules": [
+    {
+      "id": "RC-001",
+      "name": "OSHA Compliance Check",
+      "category": "Federal Compliance",
+      "severity": "high",
+      "patterns": [
+        "safety requirements",
+        "workplace safety",
+        "occupational health",
+        "OSHA",
+        "safety violations",
+        "workplace hazards"
+      ],
+      "description": "Checks for OSHA compliance requirements in construction and workplace contracts"
+    },
+    {
+      "id": "RC-002",
+      "name": "EPA Environmental Compliance",
+      "category": "Federal Compliance",
+      "severity": "high",
+      "patterns": [
+        "environmental protection",
+        "EPA requirements",
+        "hazardous materials",
+        "waste disposal",
+        "environmental impact",
+        "pollution control"
+      ],
+      "description": "Identifies EPA-related environmental compliance requirements"
+    },
+    {
+      "id": "RC-003",
+      "name": "HUD Housing Regulations",
+      "category": "Federal Compliance",
+      "severity": "medium",
+      "patterns": [
+        "HUD requirements",
+        "fair housing",
+        "housing discrimination",
+        "residential development",
+        "affordable housing"
+      ],
+      "description": "Checks for HUD housing and urban development compliance"
+    },
+    {
+      "id": "RC-004",
+      "name": "Data Privacy Compliance",
+      "category": "Federal Compliance",
+      "severity": "high",
+      "patterns": [
+        "data privacy",
+        "personal information",
+        "GDPR",
+        "CCPA",
+        "data breach",
+        "privacy policy",
+        "data protection"
+      ],
+      "description": "Identifies data privacy and protection requirements"
+    },
+    {
+      "id": "RC-005",
+      "name": "Indemnification Clauses",
+      "category": "High-risk Provisions",
+      "severity": "high",
+      "patterns": [
+        "indemnify",
+        "indemnification",
+        "hold harmless",
+        "defend and indemnify",
+        "indemnitor",
+        "indemnitee"
+      ],
+      "description": "Identifies indemnification obligations and liability shifts"
+    },
+    {
+      "id": "RC-006",
+      "name": "Limitation of Liability",
+      "category": "High-risk Provisions",
+      "severity": "high",
+      "patterns": [
+        "limitation of liability",
+        "liability cap",
+        "maximum liability",
+        "liability limited to",
+        "exclude liability",
+        "no liability for"
+      ],
+      "description": "Checks for liability limitation clauses"
+    },
+    {
+      "id": "RC-007",
+      "name": "Insurance Requirements",
+      "category": "High-risk Provisions",
+      "severity": "medium",
+      "patterns": [
+        "insurance coverage",
+        "general liability insurance",
+        "professional liability",
+        "workers compensation",
+        "insurance certificate",
+        "additional insured"
+      ],
+      "description": "Identifies insurance obligations and requirements"
+    },
+    {
+      "id": "RC-008",
+      "name": "Termination Rights",
+      "category": "High-risk Provisions",
+      "severity": "medium",
+      "patterns": [
+        "termination for convenience",
+        "termination for cause",
+        "terminate without cause",
+        "immediate termination",
+        "termination notice",
+        "right to terminate"
+      ],
+      "description": "Analyzes termination rights and conditions"
+    },
+    {
+      "id": "RC-009",
+      "name": "Prompt Payment Laws",
+      "category": "Payment Terms",
+      "severity": "medium",
+      "patterns": [
+        "payment terms",
+        "net 30",
+        "net 60",
+        "net 90",
+        "payment due",
+        "late payment",
+        "interest on late payment"
+      ],
+      "description": "Checks payment terms against prompt payment law requirements"
+    },
+    {
+      "id": "RC-010",
+      "name": "State-Specific Employment Laws",
+      "category": "State Compliance",
+      "severity": "medium",
+      "patterns": [
+        "employment agreement",
+        "non-compete",
+        "wage and hour",
+        "overtime",
+        "minimum wage",
+        "employment at will"
+      ],
+      "description": "Identifies state-specific employment law requirements"
+    }
+  ]
+}
