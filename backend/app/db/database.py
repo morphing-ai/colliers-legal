@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from app.config import settings
 
 # Create the SQLAlchemy async engine for PostgreSQL
-# Increased pool_size to handle batch_size=20 parallel operations
+# With --env-file option in uvicorn, DATABASE_URL is always available
 engine = create_async_engine(
     settings.DATABASE_URL,
     echo=settings.DEBUG,

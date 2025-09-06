@@ -17,10 +17,10 @@ def get_seed_neurobots():
             'function_name': 'detect_osha_compliance',
             'description': 'Detects OSHA compliance requirements in construction contracts',
             'neurobot_type': 'analyze',
-            'created_by': 'Sarah Johnson, Senior Paralegal',
+            'created_by': 'System',
             'code': '''
 async def detect_osha_compliance(contract_text, context):
-    """Detects OSHA compliance issues. Author: Sarah Johnson - 15 years experience"""
+    """Detects OSHA compliance issues."""
     issues = []
     osha_indicators = ['workplace safety', 'occupational health', 'safety requirements', 'PPE']
     for indicator in osha_indicators:
@@ -37,17 +37,17 @@ async def detect_osha_compliance(contract_text, context):
             'severity': 'medium',
             'recommendation': 'Contract should reference OSHA compliance'
         })
-    return {'issues': issues, 'bot_author': 'Sarah Johnson'}
+    return {'issues': issues}
 '''
         },
         {
             'function_name': 'detect_indemnification_risks',
             'description': 'Identifies problematic indemnification clauses',
             'neurobot_type': 'analyze',
-            'created_by': 'Mike Chen, Contract Specialist',
+            'created_by': 'System',
             'code': '''
 async def detect_indemnification_risks(contract_text, context):
-    """Detects high-risk indemnification. Author: Mike Chen - 20 years experience"""
+    """Detects high-risk indemnification clauses."""
     risks = []
     if 'indemnif' in contract_text.lower():
         clause_start = max(0, contract_text.lower().find('indemnif') - 200)
@@ -60,17 +60,17 @@ async def detect_indemnification_risks(contract_text, context):
                 'issue': 'Overly broad indemnification',
                 'recommendation': 'Limit to proportional fault'
             })
-    return {'risks': risks, 'bot_author': 'Mike Chen'}
+    return {'risks': risks}
 '''
         },
         {
             'function_name': 'analyze_payment_terms',
             'description': 'Analyzes payment terms and prompt payment compliance',
             'neurobot_type': 'analyze',
-            'created_by': 'Jennifer Lee, Financial Analyst',
+            'created_by': 'System',
             'code': '''
 async def analyze_payment_terms(contract_text, context):
-    """Analyzes payment terms. Author: Jennifer Lee - 12 years experience"""
+    """Analyzes payment terms and prompt payment compliance."""
     payment_issues = []
     if 'net 90' in contract_text.lower():
         payment_issues.append({
@@ -86,17 +86,17 @@ async def analyze_payment_terms(contract_text, context):
             'issue': 'Payment contingent on owner payment',
             'recommendation': 'Negotiate pay-when-paid with time limit'
         })
-    return {'payment_analysis': payment_issues, 'bot_author': 'Jennifer Lee'}
+    return {'payment_analysis': payment_issues}
 '''
         },
         {
             'function_name': 'detect_scope_creep',
             'description': 'Identifies potential for scope creep in contracts',
             'neurobot_type': 'analyze',
-            'created_by': 'Tom Wilson, Project Manager',
+            'created_by': 'System',
             'code': '''
 async def detect_scope_creep(contract_text, context):
-    """Detects scope creep potential. Author: Tom Wilson - 20 years PM experience"""
+    """Detects potential for scope creep in contracts."""
     scope_risks = []
     vague_terms = ['including but not limited to', 'as may be required', 'work as directed']
     for term in vague_terms:
@@ -113,17 +113,17 @@ async def detect_scope_creep(contract_text, context):
             'severity': 'high',
             'recommendation': 'Add detailed change order procedures'
         })
-    return {'scope_analysis': scope_risks, 'bot_author': 'Tom Wilson'}
+    return {'scope_analysis': scope_risks}
 '''
         },
         {
             'function_name': 'detect_liquidated_damages',
             'description': 'Identifies and analyzes liquidated damages provisions',
             'neurobot_type': 'analyze',
-            'created_by': 'David Kim, Risk Manager',
+            'created_by': 'System',
             'code': '''
 async def detect_liquidated_damages(contract_text, context):
-    """Detects liquidated damages. Author: David Kim - 15 years risk management"""
+    """Identifies and analyzes liquidated damages provisions."""
     ld_analysis = []
     if 'liquidated damages' in contract_text.lower():
         ld_analysis.append({
@@ -139,17 +139,17 @@ async def detect_liquidated_damages(contract_text, context):
                 'risk': 'Accumulating daily penalties',
                 'recommendation': 'Negotiate cap at percentage of contract value'
             })
-    return {'liquidated_damages': ld_analysis, 'bot_author': 'David Kim'}
+    return {'liquidated_damages': ld_analysis}
 '''
         },
         {
             'function_name': 'analyze_dispute_resolution',
             'description': 'Analyzes dispute resolution and jurisdiction clauses',
             'neurobot_type': 'analyze',
-            'created_by': 'Lisa Chang, Litigation Paralegal',
+            'created_by': 'System',
             'code': '''
 async def analyze_dispute_resolution(contract_text, context):
-    """Analyzes dispute resolution. Author: Lisa Chang - 10 years litigation"""
+    """Analyzes dispute resolution and jurisdiction clauses."""
     dispute_analysis = []
     if 'arbitration' in contract_text.lower():
         dispute_analysis.append({
@@ -164,17 +164,17 @@ async def analyze_dispute_resolution(contract_text, context):
             'note': 'Prevailing party recovers fees',
             'risk': 'Increases litigation risk'
         })
-    return {'dispute_resolution': dispute_analysis, 'bot_author': 'Lisa Chang'}
+    return {'dispute_resolution': dispute_analysis}
 '''
         },
         {
             'function_name': 'compare_to_baseline',
             'description': 'Compares contract clauses to learned baselines',
             'neurobot_type': 'compare',
-            'created_by': 'System Intelligence',
+            'created_by': 'System',
             'code': '''
 async def compare_to_baseline(contract_text, context):
-    """Compares to baseline patterns. Author: System Intelligence"""
+    """Compares contract clauses to learned baseline patterns."""
     comparisons = []
     problematic_terms = {
         'payment': ['net 60', 'net 90', 'pay if paid'],

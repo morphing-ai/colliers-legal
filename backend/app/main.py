@@ -60,16 +60,21 @@ app.include_router(compliance.router, prefix=f"{api_prefix}/compliance", tags=["
 app.include_router(rule_sets.router, prefix=f"{api_prefix}/rules", tags=["rule_sets"])
 app.include_router(admin.router, prefix=f"{api_prefix}", tags=["admin"])
 
-# Import and include Neurobot routes
+# Import and include Neurobot routes  
 from app.api import neurobots, seed_neurobots
-app.include_router(neurobots.router, prefix=f"{api_prefix}/neurobots", tags=["neurobots"])
-app.include_router(seed_neurobots.router, prefix=f"{api_prefix}/seed", tags=["seed"])
+# Traefik passes requests with /api prefix, so we need to include it
+app.include_router(neurobots.router, prefix="/api/neurobots", tags=["neurobots"])
+app.include_router(seed_neurobots.router, prefix="/api/seed", tags=["seed"])
 
 # Add a global exception handler to log unexpected errors
+from fastapi.responses import JSONResponse
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     logger.error(f"Unhandled exception: {str(exc)}", exc_info=True)
-    return {"detail": "Internal server error"}
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal server error"}
+    )
 
 @app.on_event("startup")
 async def startup_event():
@@ -88,4 +93,4 @@ async def startup_event():
     logger.info(f"Application running in {'DEBUG' if settings.DEBUG else 'PRODUCTION'} mode")
 
 if __name__ == "__main__":
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)# Test hot reload

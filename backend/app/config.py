@@ -14,10 +14,10 @@ class Settings(BaseSettings):
     DEV_MODE: bool = False
     
     # API prefix - set to / when using subdomains, /api when using paths
-    API_PREFIX: str = "/"  # Default root path
+    API_PREFIX: str = "/api"  # Default to /api for path-based routing
 
     # Database
-    DATABASE_URL: str = "postgresql+asyncpg://colliers_user:colliers_pass@localhost/colliers_legal"
+    DATABASE_URL: Optional[str] = None
     
     # Authentication
     CLERK_SECRET_KEY: Optional[str] = None
@@ -54,19 +54,19 @@ class Settings(BaseSettings):
     CORS_ORIGINS: List[str] = ["http://localhost:3000", "https://legal-colliers.dev.morphing.ai"]
     
     model_config = {
-        "env_file": ".env",
-        "env_file_encoding": "utf-8"
+        "env_file": "/app/.env",
+        "env_file_encoding": "utf-8",
+        "extra": "ignore"
     }
     
     def model_post_init(self, __context: Any) -> None:
         """Process settings after initialization."""
-        # Override DEBUG and DEV_MODE from environment
-        self.DEBUG = os.getenv("DEBUG", "false").lower() == "true"
-        self.DEV_MODE = os.getenv("DEV_MODE", "false").lower() == "true"
+        # Validate DATABASE_URL is set
+        if not self.DATABASE_URL:
+            raise ValueError("DATABASE_URL environment variable is required")
         
         # Process CORS origins from environment if available
-        cors_env = os.getenv("CORS_ORIGINS_STR", "")
-        if cors_env:
-            self.CORS_ORIGINS = [origin.strip() for origin in cors_env.split(",") if origin.strip()]
-
+        if self.CORS_ORIGINS_STR:
+            self.CORS_ORIGINS = [origin.strip() for origin in self.CORS_ORIGINS_STR.split(",") if origin.strip()]
+    
 settings = Settings()

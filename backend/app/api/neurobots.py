@@ -44,7 +44,7 @@ class ContractAnalysisRequest(BaseModel):
     analysis_types: Optional[List[str]] = None
 
 
-@router.get("/neurobots")
+@router.get("")
 async def list_neurobots(
     db: AsyncSession = Depends(get_db),
     current_user: dict = Depends(get_current_user)
@@ -68,7 +68,7 @@ async def list_neurobots(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.post("/neurobots")
+@router.post("")
 async def create_neurobot(
     request: NeurobotCreateRequest,
     db: AsyncSession = Depends(get_db),
@@ -96,7 +96,7 @@ async def create_neurobot(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.put("/neurobots/{function_name}")
+@router.put("/{function_name}")
 async def update_neurobot(
     function_name: str,
     request: NeurobotUpdateRequest,
@@ -122,7 +122,7 @@ async def update_neurobot(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.post("/neurobots/execute")
+@router.post("/execute")
 async def execute_neurobot(
     request: NeurobotExecuteRequest,
     db: AsyncSession = Depends(get_db),

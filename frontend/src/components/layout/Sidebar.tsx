@@ -27,10 +27,9 @@ export default function Sidebar({ onToggleCollapse }: SidebarProps) {
   }, [collapsed, onToggleCollapse]);
   
   const navigation = [
-    { name: 'Compliance Analyzer', href: '/', icon: FileCheck },
-    { name: 'Rule Sets', href: '/rule-sets', icon: FolderOpen },
+    { name: 'Contract Analysis', href: '/', icon: FileCheck },
+    { name: 'Neurobot Manager', href: '/neurobots', icon: BookOpen },
     { name: 'Admin', href: '/admin', icon: Settings },
-    { name: 'Health Check', href: '/health', icon: ActivityIcon },
   ];
   
   return (

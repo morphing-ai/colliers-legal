@@ -15,7 +15,7 @@ async def health_check():
     """
     return {
         "status": "ok", 
-        "api_version": "1.0",
+        "api_version": "1.2",
         "debug_mode": settings.DEBUG,
         "dev_mode": settings.DEV_MODE,
         "auth_type": "PEM key" if settings.CLERK_PEM_PUBLIC_KEY or os.path.exists(settings.CLERK_PEM_PUBLIC_KEY_PATH) else "API"
@@ -28,7 +28,7 @@ async def auth_check(current_user: User = Depends(get_current_user)):
     """
     return {
         "status": "ok", 
-        "api_version": "1.0",
+        "api_version": "1.2",
         "user_id": current_user.id,
         "email": current_user.email,
         "authenticated": True

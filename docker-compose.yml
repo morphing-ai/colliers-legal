@@ -26,6 +26,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile.backend
     container_name: colliers-legal-backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --reload-dir /app/app --env-file /app/.env
     depends_on:
       postgres:
         condition: service_healthy
@@ -34,9 +35,10 @@ services:
       - ./backend/requirements.txt:/app/requirements.txt:ro
       - ./backend/clerk_pub.pem:/app/clerk_pub.pem:ro
       - ./data:/app/data:ro
+      - ./.env:/app/.env:ro  # Mount .env file for uvicorn --env-file
     environment:
-      - DEBUG=${DEBUG:-false}
-      - DEV_MODE=${DEV_MODE:-false}
+      - DEBUG=${DEBUG:-true}
+      - DEV_MODE=${DEV_MODE:-true}
       - DATABASE_URL=postgresql+asyncpg://${DB_USER:-colliers_user}:${DB_PASSWORD:-colliers_pass}@postgres/colliers_legal
       - LEGAL_RULES_PATH=/app/data/legal-rules
       - LLM_PROVIDER=${LLM_PROVIDER:-azure_openai}
