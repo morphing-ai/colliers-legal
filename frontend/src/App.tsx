@@ -6,7 +6,7 @@ import DashboardPage from '@/pages/DashboardPage';
 import ComplianceAnalyzer from '@/pages/ComplianceAnalyzer';
 import ContractAnalysis from '@/pages/ContractAnalysis';
 import HealthCheckPage from '@/pages/HealthCheckPage';
-import RuleSetsPage from '@/pages/RuleSetsPage';
+import NeurobotManager from '@/pages/NeurobotManager';
 import AdminPage from '@/pages/AdminPage';
 import SignInPage from '@/pages/SignInPage';
 import SignOutPage from '@/pages/SignOutPage';
@@ -42,7 +42,7 @@ function App() {
           <Route path="/compliance" element={<ComplianceAnalyzer />} />
           <Route path="/compliance/analysis/:sessionId" element={<ComplianceAnalyzer />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/rule-sets" element={<RuleSetsPage />} />
+          <Route path="/neurobots" element={<NeurobotManager />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/health" element={<HealthCheckPage />} />
         </Route>
