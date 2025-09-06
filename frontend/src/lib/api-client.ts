@@ -1,5 +1,5 @@
-// Simple API client for FINRA compliance app
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://dmp.dev.morphing.ai/api';
+// API client for Morphing Digital Paralegal
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 class ApiClient {
   private token: string | null = null;
@@ -65,6 +65,26 @@ class ApiClient {
   async healthCheck() {
     return this.request('/health');
   }
+
+  // Neurobot endpoints
+  async post(endpoint: string, data: any) {
+    return this.request(endpoint, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async get(endpoint: string) {
+    return this.request(endpoint);
+  }
+
+  async put(endpoint: string, data: any) {
+    return this.request(endpoint, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
 }
 
 export const api = new ApiClient();
+export const apiClient = api; // Also export as apiClient for compatibility

@@ -6,7 +6,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Upload, FileText, AlertTriangle, CheckCircle, XCircle, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/useToast';
-import { apiClient } from '@/lib/api-client';
+import { api } from '@/lib/api-client';
 
 interface AnalysisResult {
   analysis_results: Record<string, any>;
@@ -60,11 +60,11 @@ export default function ContractAnalysis() {
 
     setIsAnalyzing(true);
     try {
-      const response = await apiClient.post('/api/neurobots/analyze-contract', {
+      const response = await api.post('/neurobots/analyze-contract', {
         contract_text: contractText,
       });
       
-      setAnalysisResult(response.data);
+      setAnalysisResult(response);
       toast({
         title: 'Analysis complete',
         description: 'Contract has been analyzed successfully.',
