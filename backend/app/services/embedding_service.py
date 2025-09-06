@@ -3,7 +3,7 @@ Embedding Service for semantic similarity search
 Uses OpenAI/Azure OpenAI for generating embeddings
 """
 import logging
-from typing import List, Optional
+from typing import List, Optional, Dict
 import numpy as np
 from openai import AsyncAzureOpenAI, AsyncOpenAI
 from app.config import settings

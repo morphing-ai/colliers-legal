@@ -3,9 +3,12 @@ Neurobot API endpoints for Morphing Digital Paralegal
 """
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import text
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel
+from datetime import datetime
 import logging
+import json
 
 from app.db.database import get_db
 from app.services.neurobot_service import neurobot_service
@@ -48,7 +51,7 @@ async def list_neurobots(
 ):
     """List all available Neurobots."""
     try:
-        query = "SELECT function_name, description, neurobot_type, created_by, run_count FROM neurobots WHERE is_active = true ORDER BY created_at DESC"
+        query = text("SELECT function_name, description, neurobot_type, created_by, run_count FROM neurobots WHERE is_active = true ORDER BY created_at DESC")
         result = await db.execute(query)
         neurobots = []
         for row in result:

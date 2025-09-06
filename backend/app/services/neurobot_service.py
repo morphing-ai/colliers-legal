@@ -13,7 +13,7 @@ import logging
 from datetime import datetime
 
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, update, insert
+from sqlalchemy import text
 from app.db.database import get_db
 from app.services.llm_service import LLMService
 from app.services.embedding_service import EmbeddingService
@@ -43,7 +43,7 @@ class NeurobotService:
         
         try:
             # Get all active neurobots
-            query = select('*').select_from('neurobots').where('is_active = true')
+            query = text("SELECT * FROM neurobots WHERE is_active = true")
             result = await db.execute(query)
             neurobots = result.fetchall()
             
