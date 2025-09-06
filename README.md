@@ -1,6 +1,6 @@
-# Colliers Paralegal
+# Morphing Digital Paralegal
 
-AI-powered legal contract analysis system for construction and real estate contracts.
+AI-powered legal contract analysis system with dynamic Neurobot intelligence for construction and real estate contracts.
 
 ## Features
 

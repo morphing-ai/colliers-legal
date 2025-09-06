@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     """Application settings."""
     
     # Application name
-    APP_NAME: str = "Colliers Paralegal API"
+    APP_NAME: str = "Morphing Digital Paralegal API"
     
     # Development settings
     DEBUG: bool = False
