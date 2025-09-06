@@ -9,7 +9,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 echo -e "${GREEN}=========================================${NC}"
-echo -e "${GREEN}  Colliers - Paralegal Development Deploy ${NC}"
+echo -e "${GREEN}  Colliers Paralegal Development Deploy ${NC}"
 echo -e "${GREEN}=========================================${NC}\n"
 
 # Check for .env file
@@ -110,9 +110,9 @@ echo -e "\n${BLUE}Useful Commands:${NC}"
 echo -e "  View logs:        ${YELLOW}docker compose logs -f [service]${NC}"
 echo -e "  Restart service:  ${YELLOW}docker compose restart [service]${NC}"
 echo -e "  Stop all:         ${YELLOW}docker compose down${NC}"
-echo -e "  Backend shell:    ${YELLOW}docker exec -it colliers-backend bash${NC}"
-echo -e "  Frontend shell:   ${YELLOW}docker exec -it colliers-frontend sh${NC}"
-echo -e "  DB shell:         ${YELLOW}docker exec -it colliers-postgres psql -U ${DB_USER} colliers_legal${NC}"
+echo -e "  Backend shell:    ${YELLOW}docker exec -it colliers-legal-backend bash${NC}"
+echo -e "  Frontend shell:   ${YELLOW}docker exec -it colliers-legal-frontend sh${NC}"
+echo -e "  DB shell:         ${YELLOW}docker exec -it colliers-legal-postgres psql -U ${DB_USER} colliers_legal${NC}"
 
 # Optional: Follow logs
 read -p "Do you want to follow the logs? (y/n) " -n 1 -r

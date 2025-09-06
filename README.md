@@ -1,4 +1,4 @@
-# Colliers - Paralegal
+# Colliers Paralegal
 
 AI-powered legal contract analysis system for construction and real estate contracts.
 

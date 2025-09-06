@@ -4,7 +4,7 @@ services:
 
   postgres:
     image: postgres:15-alpine
-    container_name: colliers-postgres
+    container_name: colliers-legal-postgres
     restart: unless-stopped
     environment:
       POSTGRES_DB: colliers_legal
@@ -25,7 +25,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.backend
-    container_name: colliers-backend
+    container_name: colliers-legal-backend
     depends_on:
       postgres:
         condition: service_healthy
@@ -86,7 +86,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.frontend
-    container_name: colliers-frontend
+    container_name: colliers-legal-frontend
     restart: unless-stopped
     volumes:
       - ./frontend/src:/app/src:rw  # Mount src for hot-reload

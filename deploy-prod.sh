@@ -9,7 +9,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 echo -e "${GREEN}=========================================${NC}"
-echo -e "${GREEN}  Colliers - Paralegal Production Deploy ${NC}"
+echo -e "${GREEN}  Colliers Paralegal Production Deploy ${NC}"
 echo -e "${GREEN}=========================================${NC}\n"
 
 # Check for .env file
@@ -133,7 +133,7 @@ echo -e "\n${BLUE}Maintenance Commands:${NC}"
 echo -e "  Restart all:      ${YELLOW}docker compose restart${NC}"
 echo -e "  Stop all:         ${YELLOW}docker compose down${NC}"
 echo -e "  Update & deploy:  ${YELLOW}git pull && ./deploy-prod.sh${NC}"
-echo -e "  Database backup:  ${YELLOW}docker exec colliers-postgres pg_dump -U ${DB_USER} colliers_legal > backup.sql${NC}"
+echo -e "  Database backup:  ${YELLOW}docker exec colliers-legal-postgres pg_dump -U ${DB_USER} colliers_legal > backup.sql${NC}"
 
 echo -e "\n${GREEN}Deployment successful! Application should be available at:${NC}"
 echo -e "${YELLOW}https://${FRONTEND_DOMAIN}${NC}\n"
