@@ -4,6 +4,7 @@ import { useUser } from '@clerk/clerk-react';
 import Layout from '@/components/layout/Layout';
 import DashboardPage from '@/pages/DashboardPage';
 import ComplianceAnalyzer from '@/pages/ComplianceAnalyzer';
+import ContractAnalysis from '@/pages/ContractAnalysis';
 import HealthCheckPage from '@/pages/HealthCheckPage';
 import RuleSetsPage from '@/pages/RuleSetsPage';
 import AdminPage from '@/pages/AdminPage';
@@ -36,7 +37,8 @@ function App() {
         
         {/* Protected routes with layout */}
         <Route element={<AuthWrapper><Layout /></AuthWrapper>}>
-          <Route path="/" element={<ComplianceAnalyzer />} />
+          <Route path="/" element={<ContractAnalysis />} />
+          <Route path="/contracts" element={<ContractAnalysis />} />
           <Route path="/compliance" element={<ComplianceAnalyzer />} />
           <Route path="/compliance/analysis/:sessionId" element={<ComplianceAnalyzer />} />
           <Route path="/dashboard" element={<DashboardPage />} />

@@ -60,6 +60,10 @@ app.include_router(compliance.router, prefix=f"{api_prefix}/compliance", tags=["
 app.include_router(rule_sets.router, prefix=f"{api_prefix}/rules", tags=["rule_sets"])
 app.include_router(admin.router, prefix=f"{api_prefix}", tags=["admin"])
 
+# Import and include Neurobot routes
+from app.api import neurobots
+app.include_router(neurobots.router, prefix=f"{api_prefix}/neurobots", tags=["neurobots"])
+
 # Add a global exception handler to log unexpected errors
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
