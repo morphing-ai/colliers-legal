@@ -25,7 +25,7 @@ export default defineConfig({
       interval: 1000
     },
     allowedHosts: [
-      'dmp.dev.morphing.ai',
+      'legal-colliers.dev.morphing.ai',
       'localhost',
       '127.0.0.1',
       '.morphing.ai'  // Allow all subdomains
@@ -35,7 +35,7 @@ export default defineConfig({
     port: 3000,
     host: '0.0.0.0',
     allowedHosts: [
-      'dmp.dev.morphing.ai',
+      'legal-colliers.dev.morphing.ai',
       'localhost',
       '127.0.0.1',
       '.morphing.ai'
