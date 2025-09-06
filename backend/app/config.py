@@ -27,9 +27,20 @@ class Settings(BaseSettings):
     CLERK_WHITELIST_EMAIL: str = "" # Comma-separated list of emails or domains (*.example.com)
     
     # LLM Provider Configuration
-    LLM_PROVIDER: str = "openai"  # openai or anthropic
+    LLM_PROVIDER: str = "azure_openai"  # azure_openai, openai, or anthropic
+    
+    # Azure OpenAI Configuration
+    AZURE_OPENAI_API_KEY: Optional[str] = None
+    AZURE_OPENAI_ENDPOINT: Optional[str] = None
+    AZURE_OPENAI_API_VERSION: str = "2024-02-15-preview"
+    AZURE_OPENAI_DEPLOYMENT: Optional[str] = None
+    AZURE_OPENAI_MODEL: Optional[str] = None
+    
+    # OpenAI Configuration
     OPENAI_API_KEY: Optional[str] = None
     OPENAI_MODEL: str = "gpt-4-turbo-preview"
+    
+    # Anthropic Configuration
     ANTHROPIC_API_KEY: Optional[str] = None
     ANTHROPIC_MODEL: str = "claude-3-opus-20240229"
     
